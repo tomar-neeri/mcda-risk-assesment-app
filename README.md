@@ -153,5 +153,5 @@ MIT License © 2025 Siddharth Singh Tomar
 ## 💬 Contact
 
 For queries, feedback, or collaborations, feel free to reach out at:  
-📧 youremail@example.com  
+📧 siddharthsinghtomar166@gmail.com   
 🔗 https://github.com/tomar-neeri/mcda-risk-assesment-app.git 
