@@ -74,7 +74,7 @@ streamlit run mcda-amr-app.py
 ```
 OR 
 
-Then open [ https://mcda-amr-risk-assessment-pipeline-eepm-neeri.streamlit.app/ ] in your browser.
+Open [ https://mcda-amr-risk-assessment-pipeline-eepm-neeri.streamlit.app/ ] in your browser.
 
 ---
 
