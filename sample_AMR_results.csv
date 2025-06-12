@@ -1,0 +1,4 @@
+sample_name,read_species,drug_class,rpm
+Sample_001,Klebsiella pneumoniae,Carbapenem,150.5
+Sample_001,Escherichia coli,Fluoroquinolone,230.2
+Sample_002,Acinetobacter baumannii,Carbapenem,85
