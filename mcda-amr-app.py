@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 
 st.set_page_config(layout="wide")
-st.title("A Multi-Criteria Decision Analysis based Framework for Assessing and Prioritizing AMR Risks from Metagenomic Datasets")
+st.title("A MCDA Framework for Assessing and Prioritizing AMR Risks from Metagenomic Datasets")
 
 # --- File Upload ---
 amr_file = st.file_uploader("Upload Combined AMR Results CSV", type="csv")
@@ -242,6 +242,6 @@ if amr_file and mcda_file:
     st.download_button(
         label="👅 Download Aggregated Final Risk Table as CSV",
         data=csv_final_df,
-        file_name="Figitnal_Aggregated_Risk_Scores.csv",
+        file_name="Final_Aggregated_Risk_Scores.csv",
         mime="text/csv"
     )
