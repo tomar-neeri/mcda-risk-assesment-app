@@ -4,3 +4,9 @@ numpy
 matplotlib
 seaborn
 plotly
+streamlit
+pandas
+numpy
+matplotlib
+seaborn
+plotly
