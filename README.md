@@ -65,15 +65,16 @@ If you don’t have Python installed, install it first: https://www.python.org/d
 
 ---
 
-## 🚀 Running the App
+## 🚀 Running the App Directly
 
 Launch the Streamlit web app locally:
 
 ```bash
 streamlit run mcda-amr-app.py
 ```
+OR 
 
-Then open `http://localhost:8501` in your browser.
+Then open [ https://mcda-amr-risk-assessment-pipeline-eepm-neeri.streamlit.app/ ] in your browser.
 
 ---
 
