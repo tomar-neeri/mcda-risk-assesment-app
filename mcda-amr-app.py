@@ -226,21 +226,21 @@ if amr_file and mcda_file:
     csv_final_df = final_df.to_csv(index=False).encode('utf-8')
 
     st.download_button(
-        label="👅 Download Detailed MCDA Data as CSV",
+        label="📥 Download Detailed MCDA Data as CSV",
         data=csv_detailed_mcda,
         file_name="Detailed_MCDA_Data.csv",
         mime="text/csv"
     )
 
     st.download_button(
-        label="👅 Download Risk Scores Pivot Data as CSV",
+        label="📥 Download Risk Scores Pivot Data as CSV",
         data=csv_heatmap,
         file_name="Risk_Scores_Pivot.csv",
         mime="text/csv"
     )
 
     st.download_button(
-        label="👅 Download Aggregated Final Risk Table as CSV",
+        label="📥 Download Aggregated Final Risk Table as CSV",
         data=csv_final_df,
         file_name="Final_Aggregated_Risk_Scores.csv",
         mime="text/csv"
