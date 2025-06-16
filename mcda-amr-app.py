@@ -7,7 +7,14 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 
 st.set_page_config(layout="wide")
-st.title("A MCDA Framework for Assessing and Prioritizing AMR Risks from Metagenomic Datasets")
+# Logo + Title Layout
+col1, col2 = st.columns([1, 5])
+
+with col1:
+    st.image("logo.png", width=120)  # Use your local file or a URL
+
+with col2:
+    st.markdown("## A MCDA Framework for Assessing and Prioritizing AMR Risks from Metagenomic Datasets")
 
 # --- File Upload ---
 amr_file = st.file_uploader("Upload Combined AMR Results CSV", type="csv")
