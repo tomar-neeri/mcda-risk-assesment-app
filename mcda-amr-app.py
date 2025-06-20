@@ -14,7 +14,7 @@ with col1:
     st.image("logo.png", width=120)  # Use your local file or a URL
 
 with col2:
-    st.markdown("## Gaphical User Inteface Tool for Assessing and Prioritizing Antimicrobial Resistance Risks from Metagenomic Datasets")
+    st.markdown("## Graphical User Interface Tool for Assessing and Prioritizing Antimicrobial Resistance Risks from Metagenomic Datasets")
 
 # --- File Upload ---
 amr_file = st.file_uploader("Upload Combined AMR Results CSV", type="csv")
