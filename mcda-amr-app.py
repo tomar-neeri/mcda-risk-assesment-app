@@ -7,23 +7,27 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 
 st.set_page_config(layout="wide")
-# Logo + Title Layout
+
+# --- Layout: Logo + Title ---
 col1, col2 = st.columns([1, 5])
-
 with col1:
-    st.image("logo.png", width=120)  # Use your local file or a URL
-
+    st.image("logo.png", width=120)  # replace with path/URL to logo
 with col2:
     st.markdown("## Graphical User Interface Tool for Assessing and Prioritizing Antimicrobial Resistance Risks from Metagenomic Datasets")
 
-# --- File Upload ---
+# --- File Upload for AMR Results ---
 amr_file = st.file_uploader("Upload Combined AMR Results CSV", type="csv")
-mcda_file = st.file_uploader("Upload MCDA Matrix CSV", type="csv")
 
-if amr_file and mcda_file:
-    # --- Load datasets ---
+# --- Load MCDA JSON from repo ---
+try:
+    mcda = pd.read_json("MCDA_matrix_with_alternatives.json")
+except Exception as e:
+    st.error(f"Error loading MCDA JSON file: {e}")
+    st.stop()
+
+if amr_file:
+    # --- Load AMR dataset ---
     df = pd.read_csv(amr_file)
-    mcda = pd.read_csv(mcda_file)
 
     # --- Validate AMR file columns ---
     required_amr_cols = {"sample_name", "drug_class", "rpm", "read_species"}
@@ -35,7 +39,7 @@ if amr_file and mcda_file:
         st.success("AMR Results CSV validation passed!")
         st.dataframe(df.head(10))
 
-    # --- Validate MCDA file columns ---
+    # --- Validate MCDA columns ---
     required_mcda_cols = {
         "species", "drug_class", "mortality_score", "incidence_score", "non_fatal_burden_score",
         "transmissibility_score", "preventability_score", "treatability_score",
@@ -43,10 +47,10 @@ if amr_file and mcda_file:
     }
     missing_mcda_cols = required_mcda_cols - set(mcda.columns)
     if missing_mcda_cols:
-        st.error(f"Uploaded MCDA Matrix CSV is missing required columns: {', '.join(missing_mcda_cols)}")
+        st.error(f"MCDA JSON is missing required columns: {', '.join(missing_mcda_cols)}")
         st.stop()
     else:
-        st.success("MCDA Matrix CSV validation passed!")
+        st.success("MCDA JSON validation passed!")
         st.dataframe(mcda.head(10))
 
     # --- Preprocessing ---
@@ -173,12 +177,10 @@ if amr_file and mcda_file:
     bar_ax.tick_params(axis='x', rotation=90)
     st.pyplot(bar_fig)
 
-    # --- Fixed Aggregation for Species x Sample x Drug Class ---
+    # --- Aggregation for Species x Sample x Drug Class ---
     aggregated = detailed_mcda_df.groupby(['sample_name', 'species', 'drug_class'], as_index=False)['rpm'].sum()
-
     mcda_scores = detailed_mcda_df.groupby(['species', 'drug_class'])[score_columns].mean().reset_index()
     mcda_scores['mcda_score'] = mcda_scores[score_columns].sum(axis=1)
-
     final_df = aggregated.merge(mcda_scores[['species', 'drug_class', 'mcda_score']], on=['species', 'drug_class'], how='left')
     final_df['cumulative_risk_score'] = final_df['rpm'] * final_df['mcda_score']
 
@@ -191,14 +193,11 @@ if amr_file and mcda_file:
     n_rows = -(-len(drug_classes) // n_cols)
 
     fig, axes = plt.subplots(n_rows, n_cols, figsize=(6 * n_cols, 5 * n_rows), squeeze=False)
-
     for i, drug_class in enumerate(drug_classes):
         row, col = divmod(i, n_cols)
         ax = axes[row][col]
-
         sub_df = facet_df[facet_df["drug_class"] == drug_class]
         pivot = sub_df.pivot_table(index="species", columns="sample_name", values=plot_metric, aggfunc='sum').fillna(0)
-
         if not pivot.empty:
             sns.heatmap(pivot, ax=ax, cmap="YlGnBu", linewidths=0.3, linecolor='gray')
             ax.set_title(f"Drug Class: {drug_class}", fontsize=12)
@@ -207,16 +206,14 @@ if amr_file and mcda_file:
             ax.tick_params(axis='x', labelrotation=90)
         else:
             ax.axis('off')
-
     for i in range(len(drug_classes), n_rows * n_cols):
         row, col = divmod(i, n_cols)
         axes[row][col].axis('off')
-
     plt.tight_layout()
     fig.suptitle("Faceted Heatmaps: Species × Sample per Drug Class", fontsize=16, y=1.02)
     st.pyplot(fig)
 
-    # --- Trinity-style Aggregation for Detailed MCDA Export ---
+    # --- Trinity-style Aggregation for Export ---
     detailed_agg = (
         detailed_mcda_df
         .groupby(["sample_name", "species", "drug_class"], as_index=False)
@@ -227,28 +224,10 @@ if amr_file and mcda_file:
 
     # --- Downloads ---
     st.subheader("Download Results")
-
     csv_detailed_mcda = detailed_agg.to_csv(index=False).encode('utf-8')
     csv_heatmap = heatmap_df.reset_index().to_csv(index=False).encode('utf-8')
     csv_final_df = final_df.to_csv(index=False).encode('utf-8')
 
-    st.download_button(
-        label="📥 Download Detailed MCDA Data as CSV",
-        data=csv_detailed_mcda,
-        file_name="Detailed_MCDA_Data.csv",
-        mime="text/csv"
-    )
-
-    st.download_button(
-        label="📥 Download Risk Scores Pivot Data as CSV",
-        data=csv_heatmap,
-        file_name="Risk_Scores_Pivot.csv",
-        mime="text/csv"
-    )
-
-    st.download_button(
-        label="📥 Download Aggregated Final Risk Table as CSV",
-        data=csv_final_df,
-        file_name="Final_Aggregated_Risk_Scores.csv",
-        mime="text/csv"
-    )
+    st.download_button("📥 Download Detailed MCDA Data as CSV", csv_detailed_mcda, "Detailed_MCDA_Data.csv", "text/csv")
+    st.download_button("📥 Download Risk Scores Pivot Data as CSV", csv_heatmap, "Risk_Scores_Pivot.csv", "text/csv")
+    st.download_button("📥 Download Aggregated Final Risk Table as CSV", csv_final_df, "Final_Aggregated_Risk_Scores.csv", "text/csv")
