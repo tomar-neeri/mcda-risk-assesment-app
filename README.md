@@ -29,9 +29,9 @@ Multi-Criteria Decision Analysis (MCDA) allows integration of multiple biologica
 
 ---
 
-## 📁 Input Files
+## 📁 Input File
 
-### 1. AMR Results File (CSV)
+### AMR Results File (CSV)
 
 | sample_name | read_species             | drug_class     | rpm   |
 |-------------|--------------------------|----------------|-------|
@@ -41,7 +41,7 @@ Multi-Criteria Decision Analysis (MCDA) allows integration of multiple biologica
 
 ---
 
-### 2. MCDA Risk Matrix File (CSV)
+### MCDA Risk Matrix File (CSV) (Embedded as .json)
 
 | species                | drug_class     | mortality_score | incidence_score | ... | pipeline_score | alternative_drug_class |
 |------------------------|----------------|------------------|------------------|-----|----------------|--------------------------|
