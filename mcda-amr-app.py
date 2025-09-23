@@ -4,6 +4,7 @@ import numpy as np
 import re
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 from io import BytesIO
 
 st.set_page_config(layout="wide")
@@ -14,6 +15,23 @@ with col1:
     st.image("logo.png", width=120)  # replace with path/URL to logo
 with col2:
     st.markdown("## Graphical User Interface Tool for Assessing and Prioritizing Antimicrobial Resistance Risks from Metagenomic Datasets")
+
+# --- Load README.md instructions ---
+def load_readme_md():
+    # Path to README in your repo
+    pr = os.path.dirname(__file__)
+    readme_path = os.path.join(pr, "README.md")
+    if os.path.isfile(readme_path):
+        with open(readme_path, "r", encoding="utf-8") as f:
+            return f.read()
+    else:
+        return "⚠️ README.md file not found."
+
+readme_content = load_readme_md()
+
+# --- Show Instructions from README.md ---
+with st.expander("📖 User Instructions (from README)", expanded=True):
+    st.markdown(readme_content)
 
 # --- File Upload for AMR Results ---
 amr_file = st.file_uploader("Upload Combined AMR Results CSV", type="csv")
