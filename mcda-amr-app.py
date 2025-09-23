@@ -30,7 +30,7 @@ def load_readme_md():
 readme_content = load_readme_md()
 
 # --- Show Instructions from README.md ---
-with st.expander("📖 User Instructions (from README)", expanded=True):
+with st.expander("📖 User Instructions", expanded=False):
     st.markdown(readme_content)
 
 # --- File Upload for AMR Results ---
