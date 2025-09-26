@@ -18,7 +18,7 @@ Multi-Criteria Decision Analysis (MCDA) allows integration of multiple biologica
 
 ## 🛠️ Features
 
-- Upload AMR gene detection results and MCDA risk matrix
+- Upload AMR gene detection results as a CSV file in the desired format (example format given below)
 - Compute **species-drug abundance-adjusted risk scores**
 - Perform **Trinity aggregation** (Species × Drug × Sample)
 - Visualize risk with:
