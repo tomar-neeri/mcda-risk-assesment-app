@@ -1,12 +1,12 @@
-# 🧬 MCDA-AMR: A Multi-Criteria Decision Analysis Framework for Antimicrobial Resistance Risk Assessment from Metagenomic Datasets
+# MCDA-AMR: A Multi-Criteria Decision Analysis Framework for Antimicrobial Resistance Risk Assessment from Metagenomic Datasets
 
-## 📌 Overview
+## Overview
 
 **MCDA-AMR** is a user-friendly, web-based analytical tool designed to assess and prioritize the risk of **antimicrobial resistance (AMR)** based on **metagenomic data**. It uses a structured **Multi-Criteria Decision Analysis (MCDA)** approach, integrating gene abundance, species-level risk, and drug class severity to provide actionable insights into AMR surveillance and public health prioritization.
 
 ---
 
-## 🔬 Scientific Background
+## Scientific Background
 
 Antimicrobial Resistance (AMR) is a critical global public health issue. According to WHO, AMR directly caused 1.27 million deaths in 2019 and contributed to nearly 5 million deaths. Metagenomic sequencing has enabled detection of AMR genes in diverse environments, but interpreting the resulting high-dimensional data in a clinically meaningful way remains a challenge.
 
@@ -16,7 +16,7 @@ Multi-Criteria Decision Analysis (MCDA) allows integration of multiple biologica
 
 ---
 
-## 🛠️ Features
+## Features
 
 - Upload AMR gene detection results as a CSV file in the desired format (example format given below)
 - Compute **species-drug abundance-adjusted risk scores**
@@ -29,7 +29,7 @@ Multi-Criteria Decision Analysis (MCDA) allows integration of multiple biologica
 
 ---
 
-## 📁 Input File
+## Input File
 
 ### AMR Results File (CSV)
 
@@ -51,7 +51,7 @@ Each scoring feature (Mortality, Incidence, etc.) ranges from **0.5 to 5**.
 
 ---
 
-## 📥 Installation
+## Installation
 
 Clone the repository and install dependencies:
 
@@ -65,7 +65,7 @@ If you don’t have Python installed, install it first: https://www.python.org/d
 
 ---
 
-## 🚀 Running the App Directly
+## Running the App Directly
 
 Launch the Streamlit web app locally:
 
@@ -78,7 +78,7 @@ Open [ https://mcda-amr-risk-assessment-pipeline-eepm-neeri.streamlit.app/ ] in 
 
 ---
 
-## 🖼️ Outputs
+## Outputs
 
 1. **Triplet Scores Table**  
    Cumulative risk scores for each Sample × Species × Drug combination.
@@ -98,7 +98,7 @@ All outputs are downloadable in CSV format from the dashboard.
 
 ---
 
-## 🧪 Example Datasets
+## Example Datasets
 
 Example input files are included:
 - `sample_AMR_results.csv`
@@ -108,7 +108,7 @@ You can use these to test the app or replace them with your own metagenomic data
 
 ---
 
-## 🔁 Risk Score Formula
+## Risk Score Formula
 
 ```text
 Risk Score = (Sum of MCDA Attributes) × RPM
@@ -121,7 +121,7 @@ Cumulative Risk Score = RPM_sum × Mean_MCDA_Score
 
 ---
 
-## 📚 References
+## References
 
 1. WHO. Global burden of bacterial AMR in 2019: a systematic analysis. Lancet (2022).
 2. Wellington et al. The role of the natural environment in the emergence of antibiotic resistance. Environ Int. (2013).
