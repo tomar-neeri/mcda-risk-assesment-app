@@ -25,12 +25,12 @@ def load_readme_md():
         with open(readme_path, "r", encoding="utf-8") as f:
             return f.read()
     else:
-        return "⚠️ README.md file not found."
+        return "README.md file not found."
 
 readme_content = load_readme_md()
 
 # --- Show Instructions from README.md ---
-with st.expander("📖 User Instructions", expanded=False):
+with st.expander("User Instructions", expanded=False):
     st.markdown(readme_content)
 
 # --- File Upload for AMR Results ---
@@ -246,6 +246,6 @@ if amr_file:
     csv_heatmap = heatmap_df.reset_index().to_csv(index=False).encode('utf-8')
     csv_final_df = final_df.to_csv(index=False).encode('utf-8')
 
-    st.download_button("📥 Download Detailed MCDA Data as CSV", csv_detailed_mcda, "Detailed_MCDA_Data.csv", "text/csv")
-    st.download_button("📥 Download Risk Scores Pivot Data as CSV", csv_heatmap, "Risk_Scores_Pivot.csv", "text/csv")
-    st.download_button("📥 Download Aggregated Final Risk Table as CSV", csv_final_df, "Final_Aggregated_Risk_Scores.csv", "text/csv")
+    st.download_button("Download Detailed MCDA Data as CSV", csv_detailed_mcda, "Detailed_MCDA_Data.csv", "text/csv")
+    st.download_button("Download Risk Scores Pivot Data as CSV", csv_heatmap, "Risk_Scores_Pivot.csv", "text/csv")
+    st.download_button("Download Aggregated Final Risk Table as CSV", csv_final_df, "Final_Aggregated_Risk_Scores.csv", "text/csv")
