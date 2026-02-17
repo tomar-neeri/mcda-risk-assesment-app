@@ -136,7 +136,7 @@ Cumulative Risk Score = RPM_sum × Mean_MCDA_Score
 
 ---
 
-## 🧑‍💻 Authors & Contributions
+## Authors & Contributions
 
 Developed by Siddharth Singh Tomar and Dr. Krishna Khairnar
 Data: SARS-CoV-2 genomic surveillance, Central India, March–April 2023  
@@ -144,14 +144,14 @@ Framework validated on 96 upper respiratory metagenomes using CZID and CARD v3.2
 
 ---
 
-## 📜 License
+## License
 
 MIT License © 2025 Siddharth Singh Tomar
 
 ---
 
-## 💬 Contact
+## Contact
 
 For queries, feedback, or collaborations, feel free to reach out at:  
-📧 siddharthsinghtomar166@gmail.com   
-🔗 https://github.com/tomar-neeri/mcda-risk-assesment-app.git 
+siddharthsinghtomar166@gmail.com   
+https://github.com/tomar-neeri/mcda-risk-assesment-app.git 
